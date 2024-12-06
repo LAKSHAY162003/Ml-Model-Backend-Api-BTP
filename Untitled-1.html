@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', { packages: ['corechart'] });
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Send Rate', 'Previous Work', 'Current Work'],
+          ['50', 24, 34],
+          ['100', 83 , 100],
+          ['150', 120, 150],
+        ]);
+
+        var options = {
+          title: "Comparative Throughput Analysis: Previous vs. Current Approach (Write Operation)",
+          subtitle: 'With and Without IPFS',
+          hAxis: {
+            title: 'Send Rate(TPS)',
+            minValue: 0,
+            maxValue: 1000,
+            textStyle: { bold: true, fontSize: 12 }, // Bold labels
+            titleTextStyle: { bold: true, fontSize: 14 }, // Bold axis title
+          },
+          vAxis: {
+            title: 'Throughput(TPS)',
+            minValue: 0,
+            maxValue: 7, // Adjusted to accommodate both sets of data
+            textStyle: { bold: true, fontSize: 12 }, // Bold labels
+            titleTextStyle: { bold: true, fontSize: 14 }, // Bold axis title
+          },
+          series: {
+            0: { color: 'red' }, // Without IPFS
+            1: { color: 'blue' }, // With IPFS
+          },
+          width: 900,
+          height: 500,
+          legend: { position: 'top', textStyle: { bold: true, fontSize: 12 } }, // Bold legend
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div"></div>
+  </body>
+</html>
